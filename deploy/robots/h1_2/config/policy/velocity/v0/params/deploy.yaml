@@ -1,9 +1,29 @@
 joint_ids_map: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]
 step_dt: 0.02
-stiffness: [98.7, 98.7, 98.7, 157.7, 19.7, 19.7, 98.7, 98.7, 98.7, 157.7, 19.7, 19.7, 98.7,
-            19.7, 19.7, 7.9, 7.9, 7.9, 7.9, 7.9, 19.7, 19.7, 7.9, 7.9, 7.9, 7.9, 7.9]
-damping:   [6.3, 6.3, 6.3, 10.1, 1.3, 1.3, 6.3, 6.3, 6.3, 10.1, 1.3, 1.3, 6.3,
-            1.3, 1.3, 0.5, 0.5, 0.5, 0.5, 0.5, 1.3, 1.3, 0.5, 0.5, 0.5, 0.5, 0.5]
+# stiffness: [98.7, 98.7, 98.7, 157.7, 19.7, 19.7, 98.7, 98.7, 98.7, 157.7, 19.7, 19.7, 98.7,
+#             19.7, 19.7, 7.9, 7.9, 7.9, 7.9, 7.9, 19.7, 19.7, 7.9, 7.9, 7.9, 7.9, 7.9]
+stiffness: [
+  135.0, 167.0, 165.0, 278.0, 30.0, 30.0,   # left hip_yaw, hip_pitch, hip_roll, knee, ankle_pitch, ankle_roll
+  135.0, 167.0, 165.0, 278.0, 30.0, 30.0,   # right leg
+  98.7,                                     # torso_joint
+  19.7, 19.7,                               # left shoulder_pitch, shoulder_roll  (GO2HV_1)
+  7.9, 7.9, 7.9, 7.9,                       # left shoulder_yaw, elbow, wrist_roll, wrist_pitch (GO2HV_2)
+  7.9,                                      # left wrist_yaw (GO2HV_2)
+  19.7, 19.7,                               # right shoulder_pitch, shoulder_roll (GO2HV_1)
+  7.9, 7.9, 7.9, 7.9, 7.9                   # right shoulder_yaw, elbow, wrist_roll, wrist_pitch, wrist_yaw (GO2HV_2)
+]
+# damping:   [6.3, 6.3, 6.3, 10.1, 1.3, 1.3, 6.3, 6.3, 6.3, 10.1, 1.3, 1.3, 6.3,
+#             1.3, 1.3, 0.5, 0.5, 0.5, 0.5, 0.5, 1.3, 1.3, 0.5, 0.5, 0.5, 0.5, 0.5]
+damping: [
+  0.1, 1.84, 0.96, 0.2, 0.15, 0.15,         # left leg
+  0.1, 1.84, 0.96, 0.2, 0.15, 0.15,         # right leg
+  6.3,                                      # torso_joint
+  1.3, 1.3,                                 # left shoulder_pitch, shoulder_roll
+  0.5, 0.5, 0.5, 0.5,                       # left shoulder_yaw, elbow, wrist_roll, wrist_pitch
+  0.5,                                      # left wrist_yaw
+  1.3, 1.3,                                 # right shoulder_pitch, shoulder_roll
+  0.5, 0.5, 0.5, 0.5, 0.5                   # right shoulder_yaw, elbow, wrist_roll, wrist_pitch, wrist_yaw
+]
 default_joint_pos: [0,-0.2,0,0.5,-0.3,0, 0,-0.2,0,0.5,-0.3,0,  0,  0.28,0,0,0.52,0,0,0, 0.28,0,0,0.52,0,0,0]
 
 commands:

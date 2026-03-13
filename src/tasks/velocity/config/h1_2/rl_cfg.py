@@ -31,7 +31,7 @@ def unitree_h1_2_ppo_runner_cfg() -> RslRlOnPolicyRunnerCfg:
       entropy_coef=0.01,
       num_learning_epochs=5,
       num_mini_batches=4,
-      learning_rate=1.0e-3,
+      learning_rate=1.0e-5,
       schedule="adaptive",
       gamma=0.99,
       lam=0.95,
@@ -41,5 +41,5 @@ def unitree_h1_2_ppo_runner_cfg() -> RslRlOnPolicyRunnerCfg:
     experiment_name="h1_2_velocity",
     save_interval=100,
     num_steps_per_env=24,
-    max_iterations=10001,
+    max_iterations=15001,
   )

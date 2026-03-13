@@ -36,31 +36,57 @@ def get_spec() -> mujoco.MjSpec:
 # Actuator config.
 ##
 
-H1_2_ACTUATOR_M107_24_2 = BuiltinPositionActuatorCfg(
-  target_names_expr=(
-    ".*_hip_yaw.*",
-    ".*_hip_pitch.*",
-    ".*_hip_roll.*",
-    "torso_joint",
-  ),
+H1_2_ACTUATOR_TORSO = BuiltinPositionActuatorCfg(
+  target_names_expr=("torso_joint",),
   stiffness=98.7,
   damping=6.3,
   effort_limit=200.0,
   armature=0.025,
 )
-H1_2_ACTUATOR_M107_24_1 = BuiltinPositionActuatorCfg(
-  target_names_expr=(
-    ".*_knee.*",
-  ),
-  stiffness=157.7,
-  damping=10.1,
-  effort_limit=300.0,
+H1_2_ACTUATOR_HIP_YAW = BuiltinPositionActuatorCfg(
+  target_names_expr=(".*_hip_yaw.*",),
+  stiffness=135.0,
+  damping=0.1,
+  effort_limit=200.0,
   armature=0.04,
+)
+H1_2_ACTUATOR_HIP_PITCH = BuiltinPositionActuatorCfg(
+  target_names_expr=(".*_hip_pitch.*",),
+  stiffness=167.0,
+  damping=1.84,
+  effort_limit=200.0,
+  armature=0.01,
+)
+H1_2_ACTUATOR_HIP_ROLL = BuiltinPositionActuatorCfg(
+  target_names_expr=(".*_hip_roll.*",),
+  stiffness=165.0,
+  damping=0.96,
+  effort_limit=200.0,
+  armature=0.6,
+)
+H1_2_ACTUATOR_KNEE = BuiltinPositionActuatorCfg(
+  target_names_expr=(".*_knee.*",),
+  stiffness=278.0,
+  damping=0.2,
+  effort_limit=300.0,
+  armature=0.19,
+)
+H1_2_ACTUATOR_ANKLE_PITCH = BuiltinPositionActuatorCfg(
+  target_names_expr=(".*_ankle_pitch.*",),
+  stiffness=30.0,
+  damping=0.15,
+  effort_limit=40.0,
+  armature=0.02,
+)
+H1_2_ACTUATOR_ANKLE_ROLL = BuiltinPositionActuatorCfg(
+  target_names_expr=(".*_ankle_roll.*",),
+  stiffness=30.0,
+  damping=0.15,
+  effort_limit=40.0,
+  armature=0.014,
 )
 H1_2_ACTUATOR_GO2HV_1 = BuiltinPositionActuatorCfg(
   target_names_expr=(
-    ".*_ankle_pitch.*",
-    ".*_ankle_roll.*",
     ".*_shoulder_pitch.*",
     ".*_shoulder_roll.*",
   ),
@@ -142,8 +168,13 @@ FEET_ONLY_COLLISION = CollisionCfg(
 
 H1_2_ARTICULATION = EntityArticulationInfoCfg(
   actuators=(
-    H1_2_ACTUATOR_M107_24_2,
-    H1_2_ACTUATOR_M107_24_1,
+    H1_2_ACTUATOR_TORSO,
+    H1_2_ACTUATOR_HIP_YAW,
+    H1_2_ACTUATOR_HIP_PITCH,
+    H1_2_ACTUATOR_HIP_ROLL,
+    H1_2_ACTUATOR_KNEE,
+    H1_2_ACTUATOR_ANKLE_PITCH,
+    H1_2_ACTUATOR_ANKLE_ROLL,
     H1_2_ACTUATOR_GO2HV_1,
     H1_2_ACTUATOR_GO2HV_2,
   ),
