@@ -4,9 +4,11 @@
 #pragma once
 
 #include <deque>
-#include <vector>
 #include <functional>
 #include <numeric>
+#include <stdexcept>
+#include <string>
+#include <vector>
 
 namespace isaaclab
 {
@@ -23,6 +25,9 @@ struct ObservationTermCfg
     std::vector<float> scale;
     int history_length = 1;
     bool scale_first = false;
+    /// If >= 0, `add` checks `obs.size()` matches (set from deploy.yaml `size`).
+    int expected_size = -1;
+    std::string term_name;
 
     void reset(std::vector<float> obs)
     {
@@ -31,6 +36,11 @@ struct ObservationTermCfg
 
     void add(std::vector<float> obs)
     {
+        if (expected_size >= 0 && static_cast<int>(obs.size()) != expected_size) {
+            throw std::runtime_error(
+                "Observation '" + term_name + "': expected size " + std::to_string(expected_size) +
+                ", got " + std::to_string(obs.size()));
+        }
         for(int j = 0; j < obs.size(); ++j)
         {
             if(scale_first) {

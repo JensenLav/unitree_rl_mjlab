@@ -182,7 +182,10 @@ void State_Mimic::enter()
 void State_Mimic::run()
 {
     auto action = env->action_manager->processed_actions();
-    for(int i(0); i < env->robot->data.joint_ids_map.size(); i++) {
+    const int n_cmd = std::min(
+        static_cast<int>(action.size()),
+        static_cast<int>(env->robot->data.joint_ids_map.size()));
+    for(int i(0); i < n_cmd; i++) {
         lowcmd->msg_.motor_cmd()[env->robot->data.joint_ids_map[i]].q() = action[i];
     }
 }

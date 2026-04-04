@@ -126,11 +126,16 @@ protected:
             /*** observation terms ***/
             const auto term_yaml_cfg = it->second;
             ObservationTermCfg term_cfg;
+            const auto term_name = it->first.as<std::string>();
+            term_cfg.term_name = term_name;
             term_cfg.params = term_yaml_cfg["params"];
             term_cfg.scale_first = scale_first;
             term_cfg.history_length = term_yaml_cfg["history_length"].as<int>(1);
 
-            auto term_name = it->first.as<std::string>();
+            if(term_yaml_cfg["size"].IsDefined()) {
+                term_cfg.expected_size = term_yaml_cfg["size"].as<int>();
+            }
+
             if(observations_map()[term_name] == nullptr) {
                 throw std::runtime_error("Observation term '" + term_name + "' is not registered.");
             }

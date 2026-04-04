@@ -23,31 +23,37 @@ observations:
             1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
             1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
     history_length: 1
+    size: 58
   motion_anchor_ori_b:
     params: {command_name: motion}
     clip: null
     scale: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
     history_length: 1
+    size: 6
   base_ang_vel:
     params: {}
     clip: null
     scale: [1.0, 1.0, 1.0]
     history_length: 1
+    size: 3
   joint_pos_rel:
     params: {}
     clip: null
     scale: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
             1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
     history_length: 1
+    size: 29
   joint_vel_rel:
     params: {}
     clip: null
     scale: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
             1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
     history_length: 1
+    size: 29
   last_action:
     params: {}
     clip: null
     scale: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
             1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
     history_length: 1
+    size: 29

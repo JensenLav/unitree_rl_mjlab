@@ -18,7 +18,18 @@ public:
     :ActionTerm(cfg, env)
     {
         if(cfg["joint_ids"].IsNull()) {
-            _action_dim = env->robot->data.joint_ids_map.size();
+            // Prefer scale length when set: supports policies that observe many joints but
+            // command a subset (joint_ids_map length = observation joints; scale = policy output).
+            if(!cfg["scale"].IsNull()) {
+                auto sc = cfg["scale"].as<std::vector<float>>();
+                if(!sc.empty()) {
+                    _action_dim = static_cast<int>(sc.size());
+                } else {
+                    _action_dim = env->robot->data.joint_ids_map.size();
+                }
+            } else {
+                _action_dim = env->robot->data.joint_ids_map.size();
+            }
         } else {
             _joint_ids = cfg["joint_ids"].as<std::vector<int>>();
             _action_dim = _joint_ids.size();
