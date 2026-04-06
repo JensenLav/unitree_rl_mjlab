@@ -226,6 +226,35 @@ def make_velocity_env_cfg() -> ManagerBasedRlEnvCfg:
         },
       },
     ),
+    # PD impedance randomization (BuiltinPositionActuator stiffness/damping in sim).
+    # Nominal values often come from unloaded / hanging sysID; under load, effective
+    # kp/kd differ. Multiplicative scaling per reset improves sim-to-real robustness.
+    "actuator_pd_gains": EventTermCfg(
+      mode="reset",
+      func=mdp.randomize_pd_gains,
+      # Not domain_randomization=True: EventManager expects params["field"] for that flag
+      # (randomize_field API only). randomize_pd_gains uses kp_range/kd_range instead.
+      params={
+        "asset_cfg": SceneEntityCfg("robot", actuator_ids=slice(None)),
+        "kp_range": (0.82, 1.18),
+        "kd_range": (0.65, 1.40),
+        "distribution": "uniform",
+        "operation": "scale",
+      },
+    ),
+    # Reflected inertia (dof armature): sysID / gear-ratio uncertainty; load vs hanging.
+    "dof_armature": EventTermCfg(
+      mode="reset",
+      func=mdp.randomize_field,
+      domain_randomization=True,
+      params={
+        "asset_cfg": SceneEntityCfg("robot", joint_names=(".*",)),
+        "field": "dof_armature",
+        "operation": "scale",
+        "distribution": "uniform",
+        "ranges": (0.85, 1.15),
+      },
+    ),
   }
 
   ##

@@ -116,6 +116,8 @@ def unitree_go2_rough_env_cfg(
 
     cfg.observations["actor"].enable_corruption = False
     cfg.events.pop("push_robot", None)
+    cfg.events.pop("actuator_pd_gains", None)
+    cfg.events.pop("dof_armature", None)
     cfg.curriculum = {}
     cfg.events["randomize_terrain"] = EventTermCfg(
       func=envs_mdp.randomize_terrain,
